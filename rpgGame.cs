@@ -6,6 +6,16 @@ int monsterHealth = 100;
 int atkPower = Random.Shared.Next(1, 21);
 int healPower = Random.Shared.Next(1,11);
 
+
+
+Console.WriteLine("");
+Console.WriteLine("Villager: Oh traveler help!!! The monster is attacking our village!!!");
+Console.ReadLine();
+Console.WriteLine("You can defeat the evil monster by attacking it, but be careful if you are low on health try to heal yourself!!");
+Console.ReadLine();
+Console.WriteLine("Are you ready? Then go and defend the village!!");
+Console.ReadLine();
+
 bool allAlive = true;
 while (allAlive)
 {
@@ -21,12 +31,14 @@ while (allAlive)
     }
     if (userNum == 1)
     {
-        monsterHealth = monsterHealth - atkPower;
+
+//using Math.Clamp to ensure the health min value is 0 and max value is 100
+        monsterHealth = Math.Clamp(monsterHealth - atkPower, 0, 100);
         Console.WriteLine($"You attack and deal {atkPower} dmg to the monster\n monster has {monsterHealth} health left");
     }
     else if (userNum == 2)
     {
-        playerHealth = playerHealth + healPower;
+        playerHealth = Math.Clamp(playerHealth + healPower, 0,100);
         Console.WriteLine($"You used heal ({healPower}) you now have {playerHealth} health left");
     }
 
